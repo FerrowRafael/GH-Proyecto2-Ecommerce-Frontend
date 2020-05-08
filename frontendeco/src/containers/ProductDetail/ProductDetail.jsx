@@ -25,6 +25,7 @@ export default class ProductDetail extends Component {
                     <span>{this.state.product?.stock} unidades</span>
                     <span>{this.state.product?.name}</span>
                     <span>{this.state.product?.description}</span>
+                    <button>Comprar</button>
                 </div>
             </div>
         )

@@ -1,5 +1,6 @@
 import React from 'react';
 import './Header.scss';
+// import Search  from '../SearchBar/SearchBar'
 import { NavLink } from 'react-router-dom';
 const Header = () => {
     return (
@@ -7,6 +8,12 @@ const Header = () => {
             {/* NavLink es para crear una clase active cuando esta en la ruta */}
             <NavLink to="/home" exact>Logo</NavLink>
             <NavLink to="/home" exact>Home</NavLink>
+
+            <div className="search">
+                <input type="text" placeholder="Nombre, descripción"/>
+                <button>Buscar</button>
+                {/* <Search/> */}
+            </div>
 
             <div className="guestZone">
                 <NavLink to="/login" exact>Login</NavLink>
