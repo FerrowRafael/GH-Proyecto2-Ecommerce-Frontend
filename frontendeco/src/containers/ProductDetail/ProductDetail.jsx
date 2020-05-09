@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import axios from "axios";
 import { API_URL } from '../../api-config';
-// import './ProductDetail.scss'
+import { Row, Col } from 'antd';
+import './ProductDetail.scss'
 export default class ProductDetail extends Component {
 
     constructor(props) {
@@ -17,17 +18,22 @@ export default class ProductDetail extends Component {
     }
     render() {
         return (
-            <div className="product">
-                <h2>Detalles del Producto</h2>
-                <img src={this.state.product?.image_path} alt="" />
-                <div className="detail">
-                    <span>{this.state.product?.price}€</span>
-                    <span>{this.state.product?.stock} unidades</span>
-                    <span>{this.state.product?.name}</span>
-                    <span>{this.state.product?.description}</span>
+            <Row className="product">
+                <div>
+                <img span={10} src={this.state.product?.image_path} alt=""/>
+                </div>
+                <div span={10} className="detail">
+                    <div className="nameId">
+                        <div>{this.state.product?.name}</div>
+                        <div>{this.state.product?._id}</div>
+                    </div>
+
+                    <Col>{this.state.product?.description}</Col>
+                    <Col>Precio: {this.state.product?.price}€</Col>
+                    <Col>Stock: {this.state.product?.stock} unidades</Col>
                     <button>Comprar</button>
                 </div>
-            </div>
+            </Row>
         )
     }
 }

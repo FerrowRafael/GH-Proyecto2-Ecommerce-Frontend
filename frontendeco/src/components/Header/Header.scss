@@ -1,0 +1,23 @@
+@import '../../colors.scss';
+.header {
+    display: flex;
+    justify-content: space-around;
+    background-color: $darkblue;
+    color: $white;
+    font-size: 1rem;
+    .guestZone {
+        display: flex;
+    }
+    a {
+        all: unset;
+        padding: 0.8em;
+        cursor: pointer;
+        transition: all 0.8s;
+        &:hover {
+            background-color: $lightblue;
+        }
+        &.active {
+            background-color: $lightblue;
+        }
+    }
+}

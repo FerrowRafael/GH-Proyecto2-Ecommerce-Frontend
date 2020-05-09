@@ -13,7 +13,6 @@ const ProductsRecent = () => {
     }, [])
     return (
         <div className="products">
-            <h2>ProductsRecent</h2>
             {products.map(product => <Product product={product}/>)}
         </div>
     )

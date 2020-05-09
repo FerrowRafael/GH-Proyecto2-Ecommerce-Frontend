@@ -1,19 +1,50 @@
 import React, { Component } from 'react'
-import './SearchBar.scss';
+import axios from 'axios'
+import { API_URL } from '../../api-config';
+import Suggestions from '../Sugerencias/Sugerencias'
+import { Form, Input, Button, notification } from 'antd';
 
-export default class SearchBar extends Component {
+class Search extends Component {
+  state = {
+    query: '',
+    results: []
+  }
 
-    constructor(props) {
-        super(props),
-        this.state = {}
-    }
+  getInfo = () => {
+    axios.get(API_URL + '/products/searchMe/input=' + this.state.query)
+      .then(({ data }) => {
+        this.setState({
+          results: data                                         
+        })
+      })
+  }
 
+  handleInputChange = () => {
+    this.setState({
+      query: this.search.value
+    }, () => {
+      if (this.state.query && this.state.query.length > 1) {
+        if (this.state.query.length % 2 === 0) {
+          this.getInfo()
+        }
+      } else if (!this.state.query) {
+      }
+    })
+  }
 
-    render() {
-        return (
-            console.log(this.state),
-            <input class="form-control" value={this.state.text} onChange={(text) => this.filter(text)}/>
-        )
-    }
-
+  render() {
+    return (
+      <Form>
+        <Input
+          placeholder="Busca producto"
+          ref={input => this.search = input}
+          onChange={this.handleInputChange}
+        />
+        <Button>Buscar</Button>
+        <Suggestions results={this.state.results} />
+      </Form>
+    )
+  }
 }
+
+export default Search

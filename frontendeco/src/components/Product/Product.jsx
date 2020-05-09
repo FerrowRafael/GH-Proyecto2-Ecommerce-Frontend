@@ -1,11 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Row, Col, Card } from 'antd';
+import './Product.scss'
 
 const Product = ({ product }) => {
-    return (<Link className="product" key={product._id} to={'/product/'+product._id}>
-        <img src={product.image_path} alt="" />
-        <span>{product.name}</span>
-        <span>{product.price}€</span>
+    return (
+    <Link className="product" key={product._id} to={'/product/'+product._id}>
+        <Card
+            hoverable
+            style={{ width: 400 }}
+            cover={<img src={product.image_path} alt="" />}
+        >
+        <Col>{product.name}</Col>
+        <Col>{product.price}€</Col>
+        </Card>
     </Link>
     )
 }
