@@ -1,6 +1,6 @@
 import React from 'react'
 import { Form, Input, Button, notification } from 'antd';
-// import './Login.scss';
+import './Login.scss';
 import axios from 'axios';
 import { API_URL } from '../../api-config';
 import { useHistory } from 'react-router-dom';
@@ -19,7 +19,10 @@ const Login = () => {
             .then(res => {//como subscribe en angular
                 localStorage.setItem('authToken',res.data.token)//guardamos el token en localstorage
                 notification.success({ message: 'Usuario conectado éxito' });
-                history.push('/')//this.router.navigate(['/login]) en angular
+                window.setTimeout(() => {
+                    history.push('/home')//this.router.navigate(['/login]) en angular
+                 }, 2000)
+                
             })
             .catch(console.error)
     };
@@ -28,13 +31,15 @@ const Login = () => {
             <Form
                 className="loginForm"
                 {...layout}
-                // name="basic"
-                // initialValues={{email:'yo@yo.yo', password: '12345' }}
+                name="basic"
+                initialValues={{email:'yo@yo.yo', password: '12345' }}
                 onFinish={onFinish}
                 onFinishFailed={console.error} >
+                <h3>Login</h3>
                 <Form.Item
                     label="Email"
                     name="email"
+                    id="email"
                     rules={[{ required: true, message: 'El email es requerido' }]}
                 >
                     <Input />
@@ -43,6 +48,7 @@ const Login = () => {
                 <Form.Item
                     label="Contraseña"
                     name="password"
+                    id="password"
                     rules={[{ required: true, message: 'La contraseña es requerida' }]}
                 >
                     <Input.Password />
