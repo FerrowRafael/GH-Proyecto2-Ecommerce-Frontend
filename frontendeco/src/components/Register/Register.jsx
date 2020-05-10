@@ -31,6 +31,7 @@ const Register = () => {
                 {...layout}
                 onFinish={onFinish}
                 onFinishFailed={console.error} >
+                <h3>Register</h3>
                 <Form.Item
                     label="Nombre"
                     name="userName"

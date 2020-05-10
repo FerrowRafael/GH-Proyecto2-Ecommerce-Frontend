@@ -31,10 +31,11 @@ const Login = () => {
             <Form
                 className="loginForm"
                 {...layout}
-                // name="basic"
-                // initialValues={{email:'yo@yo.yo', password: '12345' }}
+                name="basic"
+                initialValues={{email:'yo@yo.yo', password: '12345' }}
                 onFinish={onFinish}
                 onFinishFailed={console.error} >
+                <h3>Login</h3>
                 <Form.Item
                     label="Email"
                     name="email"

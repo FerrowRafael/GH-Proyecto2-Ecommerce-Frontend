@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { API_URL } from '../../api-config';
 import Suggestions from '../Sugerencias/Sugerencias'
-import { Form, Input, Button, notification } from 'antd';
+import { Form, Input, Button, Radio } from 'antd';
 
 class Search extends Component {
   state = {
     query: '',
-    results: []
+    results: [],
+    value: 1,
   }
 
   getInfo = () => {
@@ -32,17 +33,18 @@ class Search extends Component {
     })
   }
 
+
   render() {
     return (
-      <Form>
-        <Input
+      <div>
+        <input
           placeholder="Busca producto"
           ref={input => this.search = input}
           onChange={this.handleInputChange}
         />
-        <Button>Buscar</Button>
+        <Button onClick="dameResults()">Buscar</Button>
         <Suggestions results={this.state.results} />
-      </Form>
+      </div>
     )
   }
 }

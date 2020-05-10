@@ -12,7 +12,7 @@ const Product = ({ product }) => {
             cover={<img src={product.image_path} alt="" />}
         >
         <Col>{product.name}</Col>
-        <Col>{product.price}€</Col>
+        <Col>{product.price} €</Col>
         </Card>
     </Link>
     )
