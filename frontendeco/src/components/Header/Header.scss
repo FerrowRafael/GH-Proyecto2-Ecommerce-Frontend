@@ -5,7 +5,7 @@
     background-color: $darkblue;
     color: $white;
     font-size: 1rem;
-    .guestZone {
+    .guestZone, .userZone, .leftHeader {
         display: flex;
     }
     a {
@@ -19,5 +19,12 @@
         &.active {
             background-color: $lightblue;
         }
+    }
+
+    .patata{
+        justify-content: space-evenly;
+        display: flex;
+        width: 18em;
+        margin-top: 0.5em;
     }
 }

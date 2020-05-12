@@ -1,6 +1,6 @@
 // RESULTS
 import React, { Component, Fragment } from 'react'
-import { Form, Input, Button, Radio } from 'antd';
+import { Radio } from 'antd';
 import axios from 'axios'
 import { API_URL } from '../../api-config';
 import Product from '../../components/Product/Product';
@@ -40,7 +40,7 @@ class Results extends Component {
     this.setState({
       value: e.target.value,
     }, () => {
-      if ((e.target.value) == 1) {
+      if ((e.target.value) === 1) {
         this.getInfoMay()
       } 
       else {

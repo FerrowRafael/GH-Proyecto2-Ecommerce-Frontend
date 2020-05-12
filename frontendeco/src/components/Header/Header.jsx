@@ -3,15 +3,19 @@ import './Header.scss';
 import Search  from '../SearchBar/SearchBar'
 import 'antd/dist/antd.css';
 import { NavLink } from 'react-router-dom';
+import { connect } from "react-redux";
 import Logout from '../Logout/Logout'
 import { Button } from 'antd';
 
 class Header extends Component {
+    
 
     render(){
+        console.log(this.props.user)
         return (
-            <div className="header">
-                {/* NavLink es para crear una clase active cuando esta en la ruta */}
+            
+            <header className="header">
+            
                 <div className="leftHeader">
                     <NavLink to="/home" exact>Logo</NavLink>
                     <NavLink to="/home" exact>Home</NavLink>
@@ -21,21 +25,23 @@ class Header extends Component {
                 <div className="search">
                     <Search/>
                 </div>
-    
-                <div className="guestZone">
-                    <NavLink to="/login" exact>Login</NavLink>
+                
+                {this.props.user ?
+                <div className="userZone">
+                    <p>Bienvenido, {this.props.user.userName}</p>
                     <Button type="link" onClick={Logout}>Logout</Button>
                 </div>
-    
-                {/* Dependiendo si es user/admin/seller, mostrar diferentes profile */}
-                {/* <div className="userZone">
-                    <NavLink to="/cart" exact>Cesta</NavLink>
-                    <NavLink to="/logout" exact>Logout</NavLink>
-                    <NavLink to="/profile" exact>Profile</NavLink>
-                </div> */}
-            </div>
+                :
+                <div className="guestZone">
+                    <NavLink to="/login" exact>Login</NavLink>
+                    <NavLink to="/register" exact>Registro</NavLink>
+                </div>
+            }
+            
+            </header>
         )
     }
     
 }
-export default Header;
+const mapStateToProps = (state) => ({ user: state.user })
+export default connect(mapStateToProps)(Header);

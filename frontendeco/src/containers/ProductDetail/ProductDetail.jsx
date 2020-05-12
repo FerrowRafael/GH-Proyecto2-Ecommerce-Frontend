@@ -8,7 +8,8 @@ export default class ProductDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            product: {}
+            product: {},
+            element: {}
         }
     }
     componentDidMount() {
@@ -16,7 +17,13 @@ export default class ProductDetail extends Component {
         axios.get(API_URL+'/products/search/id='+_id)//hacemos la petición para obtener ese producto en detalle
             .then(res => this.setState({ product: res.data }))//actualizamos el estado acorde a la respuesta del servi
     }
+
+    addCart(element){
+        localStorage.setItem('cart', JSON.stringify(this.state.element))
+    }
+
     render() {
+        let element = ''
         return (
             <Row className="product">
                 <div>
@@ -31,9 +38,12 @@ export default class ProductDetail extends Component {
                     <Col>{this.state.product?.description}</Col>
                     <Col>Precio: {this.state.product?.price}€</Col>
                     <Col>Stock: {this.state.product?.stock} unidades</Col>
-                    <button>Comprar</button>
+                    <button OnClick={this.addCart(element)}>Add to carrito</button>
                 </div>
             </Row>
         )
     }
 }
+
+// const mapStateToProps = (state) => ({ product: state.product })
+// export default connect(mapStateToProps)(ProductDetail);

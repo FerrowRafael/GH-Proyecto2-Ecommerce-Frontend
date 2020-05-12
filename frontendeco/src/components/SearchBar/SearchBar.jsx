@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { API_URL } from '../../api-config';
 import Suggestions from '../Sugerencias/Sugerencias'
-import { Form, Input, Button, Radio } from 'antd';
+import { Button } from 'antd';
 
 class Search extends Component {
   state = {
@@ -37,13 +37,16 @@ class Search extends Component {
   render() {
     return (
       <div>
-        <input
-          placeholder="Busca producto"
-          ref={input => this.search = input}
-          onChange={this.handleInputChange}
-        />
-        <Button onClick="dameResults()">Buscar</Button>
-        <Suggestions results={this.state.results} />
+        <div className="patata">
+          <input
+            placeholder="Busca producto"
+            ref={input => this.search = input}
+            onChange={this.handleInputChange}
+          />
+          <Button  type="primary" onClick="getInfo()">Buscar</Button>
+          <Suggestions results={this.state.results} />
+        </div>
+        <div>{this.state.results}</div>
       </div>
     )
   }

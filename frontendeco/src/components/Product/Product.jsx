@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Row, Col, Card } from 'antd';
+import { Col, Card } from 'antd';
 import './Product.scss'
 
 const Product = ({ product }) => {

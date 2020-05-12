@@ -1,24 +1,23 @@
 import React, { useEffect, useState } from 'react'
-import { API_URL } from '../../api-config';
-import axios from 'axios';
-import { Row, Col } from 'antd';
+// import { Row, Col } from 'antd';
 import './Home.scss'
+import { productsAll } from '../../redux/actions/products';
 import Product from '../../components/Product/Product';
 import ProductsRecent from '../../components/ProductsRecent/ProductsRecent';
+import { connect } from "react-redux";
 
-const Home = () => {
-    const [products, setProducts] = useState([])
-    useEffect(() => {
-        axios.get(API_URL + '/products/all')
-            .then(res => setProducts(res.data))
-            .catch(console.error)
-    }, [])
+const Home = (props) => {
+    console.log(props.product)
+
     return (
         <div>
             <h2>Todos los productos</h2>
+            <button onClick={() => productsAll()}>Pulsa</button>
             <div className="products">
-                {products.map(product => <Product product={product}/>)}
+                {(props.product).map(product => <Product key={product._id} product={product}/>)}
             </div>
+
+            
             <div className="productsRecent">
                 <h2>Productos añadidos recientemente</h2>
                 <ProductsRecent/>
@@ -28,4 +27,5 @@ const Home = () => {
 
     )
 }
-export default Home;
+const mapStateToProps = (state) => ({ product: state.product })
+export default connect(mapStateToProps)(Home);
