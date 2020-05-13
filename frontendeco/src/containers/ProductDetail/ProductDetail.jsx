@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from "axios";
 import { API_URL } from '../../api-config';
 import { Row, Col } from 'antd';
+// import { addCarrito} from '../../redux/actions/carrito'
 import './ProductDetail.scss'
 export default class ProductDetail extends Component {
 
@@ -19,6 +20,7 @@ export default class ProductDetail extends Component {
     }
 
     addCart(element){
+
         localStorage.setItem('cart', JSON.stringify(this.state.element))
     }
 

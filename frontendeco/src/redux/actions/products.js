@@ -6,7 +6,14 @@ import { API_URL } from '../../api-config'
 export const productsAll = async() => {
     const res = await axios.get(API_URL + '/products/all')
     store.dispatch({ 
-        type: 'PRODUCTSALL',
+        type: 'PRODUCTS_ALL',
         payload: res.data
     });
 }
+
+export const rdx_resultName = (resultName) => {
+	store.dispatch({
+		type: 'SEARCH_NAME',
+		payload: resultName
+	})
+};

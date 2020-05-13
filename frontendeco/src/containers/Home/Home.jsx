@@ -7,23 +7,26 @@ import ProductsRecent from '../../components/ProductsRecent/ProductsRecent';
 import { connect } from "react-redux";
 
 const Home = (props) => {
-    console.log(props.product)
 
+    useEffect(() => {
+        productsAll()
+    }, [])
+    console.log(props.product)
     return (
         <div>
             <h2>Todos los productos</h2>
-            <button onClick={() => productsAll()}>Pulsa</button>
+
             <div className="products">
-                {(props.product).map(product => <Product key={product._id} product={product}/>)}
+                {(props.product)?.map(product => <Product key={product._id} product={product}/>)}
             </div>
 
-            
+
             <div className="productsRecent">
                 <h2>Productos añadidos recientemente</h2>
                 <ProductsRecent/>
             </div>
         </div>
-            
+
 
     )
 }

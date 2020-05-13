@@ -4,6 +4,7 @@ import { Radio } from 'antd';
 import axios from 'axios'
 import { API_URL } from '../../api-config';
 import Product from '../../components/Product/Product';
+import SearchResults from '../../components/SearchResults/SearchResults';
 
 class Results extends Component {
     state = {
@@ -63,6 +64,9 @@ class Results extends Component {
                 <div className="products">
                     {this.state.results.map(product => <Product product={product}/>)}
                 </div>
+            </div>
+            <div>
+              <SearchResults/>
             </div>
         </Fragment>
       )

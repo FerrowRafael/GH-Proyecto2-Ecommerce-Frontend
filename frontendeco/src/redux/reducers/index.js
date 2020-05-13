@@ -1,4 +1,4 @@
-const reducer = (state = {}, action) => {
+const reducer = (state = {nombres: "", cart: []}, action) => {
     switch (action.type) {
         // LOGIN
         case 'LOGIN':
@@ -6,10 +6,20 @@ const reducer = (state = {}, action) => {
                 ...state,
                 user: action.payload
             }
-        case 'PRODUCTSALL':
+        case 'PRODUCTS_ALL':
             return {
                 ...state,
                 product: action.payload
+            }
+        case 'ADD_CART':
+            return {
+                ...state,
+                cart: [...state.cart, action.payload]
+                }
+        case 'SEARCH_NAME':
+            return {
+                ...state,
+                productSearchResult: action.payload
             }
         default:
             return state;

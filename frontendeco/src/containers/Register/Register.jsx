@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import { Form, Input, Button, notification } from 'antd';
 import './Register.scss';
 import { API_URL } from '../../api-config';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+
 
 const layout = {
     labelCol: { span: 8 },
@@ -13,7 +14,13 @@ const tailLayout = {
     wrapperCol: { offset: 8, span: 16 },
 };
 const Register = () => {
+    const nameInput = useRef(null);
     const history = useHistory();//props.history
+
+    useEffect(() => {
+        nameInput.current.focus()
+    }, [])
+
     const onFinish = user => {
         axios.post(API_URL + '/users/register', user)
             .then(() => {//como subscribe en angular
@@ -36,7 +43,7 @@ const Register = () => {
                     label="Nombre"
                     name="userName"
                 >
-                    <Input />
+                    <Input ref={nameInput}/>
                 </Form.Item>
                 <Form.Item
                     label="Email"
