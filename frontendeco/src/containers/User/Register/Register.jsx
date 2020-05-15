@@ -1,8 +1,11 @@
 import React, { useRef, useEffect } from 'react'
 import { Form, Input, Button, notification } from 'antd';
-import './Login.scss';
+import './Register.scss';
+import { API_URL } from '../../../api-config';
+import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import { login } from '../../redux/actions/users';
+
+
 const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
@@ -10,55 +13,49 @@ const layout = {
 const tailLayout = {
     wrapperCol: { offset: 8, span: 16 },
 };
-
-const Login = () => {
-    const emailInput = useRef(null);
+const Register = () => {
+    const nameInput = useRef(null);
     const history = useHistory();//props.history
 
     useEffect(() => {
-        emailInput.current.focus()
+        nameInput.current.focus()
     }, [])
 
     const onFinish = user => {
-      login(user)
-      .then(()=>{
-        notification.success({
-            message: 'Usuario conectado éxito'
-        });
-        history.push('/home') //this.router.navigate(['/login]) en angular
-      })
-      .catch(error=>{
-          console.error(error)
-          notification.error({
-            message: 'Credenciales inválidas',
-            description:'Email y/o contraseñas no válidas'
-        })
-      })
+        axios.post(API_URL + '/users/register', user)
+            .then(() => {//como subscribe en angular
+                notification.success({ message: 'Usuario creado con éxito' });
+                window.setTimeout(() => {
+                    history.push('/login')//this.router.navigate(['/login]) en angular
+                 }, 2000)
+            })
+            .catch(console.error)
     };
-
     return (
-        <div className="loginContainer">
+        <div className="registerContainer">
             <Form
-                className="loginForm"
+                className="registerForm"
                 {...layout}
-                name="basic"
-                // initialValues={{email:'yo@yo.yo', password: '12345' }}
                 onFinish={onFinish}
                 onFinishFailed={console.error} >
-                <h3>Login</h3>
+                <h3>Register</h3>
+                <Form.Item
+                    label="Nombre"
+                    name="userName"
+                >
+                    <Input ref={nameInput}/>
+                </Form.Item>
                 <Form.Item
                     label="Email"
                     name="email"
-                    id="email"
                     rules={[{ required: true, message: 'El email es requerido' }]}
                 >
-                    <Input ref={emailInput}/>
+                    <Input />
                 </Form.Item>
 
                 <Form.Item
                     label="Contraseña"
                     name="password"
-                    id="password"
                     rules={[{ required: true, message: 'La contraseña es requerida' }]}
                 >
                     <Input.Password />
@@ -66,11 +63,11 @@ const Login = () => {
 
                 <Form.Item {...tailLayout}>
                     <Button type="primary" htmlType="submit">
-                        Conectarse
-          </Button>
+                        Darse de alta
+                    </Button>
                 </Form.Item>
             </Form>
         </div>
     );
 }
-export default Login;
+export default Register;

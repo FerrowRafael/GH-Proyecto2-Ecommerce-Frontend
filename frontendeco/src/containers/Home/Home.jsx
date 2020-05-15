@@ -11,13 +11,12 @@ const Home = (props) => {
     useEffect(() => {
         productsAll()
     }, [])
-    console.log(props.product)
     return (
         <div>
             <h2>Todos los productos</h2>
 
             <div className="products">
-                {(props.product)?.map(product => <Product key={product._id} product={product}/>)}
+                {(props.products)?.map(product => <Product key={product._id} product={product}/>)}
             </div>
 
 
@@ -30,5 +29,5 @@ const Home = (props) => {
 
     )
 }
-const mapStateToProps = (state) => ({ product: state.product })
+const mapStateToProps = (state) => ({ products: state.products })
 export default connect(mapStateToProps)(Home);

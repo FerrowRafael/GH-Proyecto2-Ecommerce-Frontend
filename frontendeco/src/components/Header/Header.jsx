@@ -3,8 +3,8 @@ import './Header.scss';
 import Search  from '../SearchBar/SearchBar'
 import 'antd/dist/antd.css';
 import { NavLink } from 'react-router-dom';
+import { logout } from '../../redux/actions/users';
 import { connect } from "react-redux";
-import Logout from '../Logout/Logout'
 import { Button } from 'antd';
 
 class Header extends Component {
@@ -29,7 +29,8 @@ class Header extends Component {
                 {this.props.user ?
                 <div className="userZone">
                     <p>Bienvenido, {this.props.user.userName}</p>
-                    <Button type="link" onClick={Logout}>Logout</Button>
+                    <NavLink to="/carrito" exact>Carrito</NavLink>
+                    <Button type="link" onClick={logout}>Logout</Button>
                 </div>
                 :
                 <div className="guestZone">

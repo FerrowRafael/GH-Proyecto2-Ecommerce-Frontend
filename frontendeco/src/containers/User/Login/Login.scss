@@ -1,5 +1,5 @@
-@import '../../colors.scss';
-.registerContainer {
+@import '../../../colors.scss';
+.loginContainer {
     padding: 1.2em;
     display: flex;
     justify-content: center;
@@ -7,5 +7,4 @@
     label {
         color: $white;
     }
-        
 }

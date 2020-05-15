@@ -43,7 +43,7 @@ class Search extends Component {
   search(){
     console.log(this.state.nombre)
     rdx_resultName(this.state.nombre);
-    this.props.history.push("/results");
+    this.props.history.push('/results/'+ this.state.nombre);
   }
 
   render() {

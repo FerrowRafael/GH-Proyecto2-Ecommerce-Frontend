@@ -1,4 +1,4 @@
-const reducer = (state = {nombres: "", cart: []}, action) => {
+const reducer = (state = { cart: [] }, action) => {
     switch (action.type) {
         // LOGIN
         case 'LOGIN':
@@ -6,21 +6,58 @@ const reducer = (state = {nombres: "", cart: []}, action) => {
                 ...state,
                 user: action.payload
             }
+        case 'LOGOUT':
+            return {
+                ...state,
+                user: undefined
+            }
         case 'PRODUCTS_ALL':
             return {
                 ...state,
-                product: action.payload
+                products: action.payload
             }
-        case 'ADD_CART':
+        case 'SEARCH_RESULT':
             return {
                 ...state,
-                cart: [...state.cart, action.payload]
+                result: action.payload
                 }
         case 'SEARCH_NAME':
             return {
                 ...state,
                 productSearchResult: action.payload
             }
+        // ADD CART
+        case 'ADD_CART':
+            return {
+                ...state,
+                cart: [...state.cart, action.payload]
+            }
+        case 'CLEAR_CART':
+            return {
+                ...state,
+                cart: []
+                }
+        case 'CLEAR_ONE_PRODUCT':
+            return {
+                ...state,
+                cart: action.payload
+                }
+        case 'COMPRAR':
+            return {
+                ...state,
+                compra: action.payload
+            }
+        case 'PRODUCT_CESTA':
+            return {
+                ...state,
+                productCesta: action.payload
+            }
+        case 'PRODUCT_VALUE':
+            return {
+                ...state,
+                productValue: action.payload
+            }
+
         default:
             return state;
     }
