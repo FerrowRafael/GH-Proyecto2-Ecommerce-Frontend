@@ -5,7 +5,7 @@ import 'antd/dist/antd.css';
 import { NavLink } from 'react-router-dom';
 import { logout } from '../../redux/actions/users';
 import { connect } from "react-redux";
-import { Button } from 'antd';
+// import { Button } from 'antd';
 
 class Header extends Component {
     
@@ -28,14 +28,14 @@ class Header extends Component {
                 
                 {this.props.user ?
                 <div className="userZone">
-                    <p>Bienvenido, {this.props.user.userName}</p>
+                    <NavLink to="/" exact>Bienvenido, {this.props.user.userName}</NavLink>
                     <NavLink to="/carrito" exact>Carrito</NavLink>
-                    <Button type="link" onClick={logout}>Logout</Button>
+                    <NavLink type="link" onClick={logout} to="/home">Logout</NavLink>
                 </div>
                 :
                 <div className="guestZone">
-                    <NavLink to="/login" exact>Login</NavLink>
                     <NavLink to="/register" exact>Registro</NavLink>
+                    <NavLink to="/login" exact>Login</NavLink>
                 </div>
             }
             

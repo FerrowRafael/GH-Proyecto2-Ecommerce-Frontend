@@ -2,15 +2,30 @@ import React, {Component} from 'react';
 import OtroProduct from '../../components/OtroProduct/OtroProduct';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { comprar } from '../../redux/actions/carrito'
+import { Col, Card, Button, InputNumber } from 'antd';
+import { addCantCart, subCantCart, clearOneProduct } from "../../redux/actions/carrito"; 
+import { emptyCart } from "../../redux/actions/carrito";
 
 class PurchasingProcess extends Component{
     constructor(props) {
         super(props);
-        
+        this.state = {
+            total: this.product?.price*this.product?.unit,
+      
+
+        }
     }
     componentDidUpdate(){
         
+    }
+    addValue(value) {
+        this.state.total((value+1)*this.product?.price)
+        addCantCart(this.product._id);
+    }
+    
+    subValue(value) {
+        this.state.total((value-1)*this.product?.price)
+        subCantCart(this.product._id);
     }
 
     render(){
@@ -20,23 +35,20 @@ class PurchasingProcess extends Component{
         // }
 
         return(
-            <div>
-            <div>
-                {(this.props.cart)?.map(product => <OtroProduct key={product._id} product={product}/>)}
-            </div>
-            {/* <button onClick={()=>comprar(product)}>Comprar</button> */}
-        
-            </div>
-        ) 
-        
+            <div className="product">
+  
+            {(this.props.cart)?.map(product => <OtroProduct showInput={true} key={this.product?._id} product={product}/>)}
+            <Button type="primary" onClick={()=>emptyCart()} shape="circle">delete</Button>
+            
+              </div>
+        )
     }
 }
 
 
 
 
-
-const mapStateToProps = (state) => ({ cart: state.cart })
+const mapStateToProps = (state) => ({ cart:[...state.cart]})
 export default connect(mapStateToProps)(PurchasingProcess);
 
 

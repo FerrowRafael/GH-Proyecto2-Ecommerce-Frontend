@@ -1,46 +1,62 @@
 import React, { useEffect, useState } from 'react'
-
-import { productCesta, productValue } from '../../redux/actions/carrito';
-import { Col, Card } from 'antd';
-// import './Product.scss'
-import { InputNumber } from 'antd';
+import { Link } from 'react-router-dom'
+import { Col, Card, Button, InputNumber } from 'antd';
+import { addCantCart, subCantCart, clearOneProduct } from "../../redux/actions/carrito"; 
 
 
-const OtroProduct = ({ product }) => {
-   
-    const [total,  setTotal] = useState(product?.price) 
-    console.log(product)
-    useEffect(() => {
-        // console.log(4*product.price)
-    }, [])
+// import './OtroProducts.scss'
+import { clear } from 'redux-localstorage-simple';
+// const { _id } = useParams();//extraemos el parámetro _id de la ruta (ActivatedRoute para recoger params)
 
-    function onChange(value) {
-        setTotal(value*product?.price)
-        console.log(total)
-        console.log(value)
-        productCesta(product)
-        productValue(value)
-    }
+const OtroProduct = ({ product, showInput }) => {
 
+const [total,  setTotal] = useState(product?.price*product.unit) 
+
+function addValue(value) {
+   setTotal((value+1)*product?.price)
+   addCantCart(product._id);
+}
+function subValue(value) {
+   setTotal((value-1)*product?.price)
+   subCantCart(product._id);
+}
     
     return (
         <div>
             <div className="product" key={product?._id}>
                 <Card
                     hoverable
-                    style={{ width: 400 }}
-                    cover={<img src={product?.image_path} alt="" />}
-                >
-                <Col>{product?.name}</Col>
-                <Col>{product?.price} €</Col>
-                <Col>{total}</Col>
+                    style={{ width: 220 }}
+                    cover={
+                    <Link className="product" key={product._id} to={'/product/'+product._id}>
+                        <img src={product.image_path} alt="" />
+                    </Link>
+                    }>
+                    <div className="date">
+                        <Col>{product.name}</Col>
+                        <Col>{product.price} €</Col>
 
-                <InputNumber  min={1} max={10} defaultValue={1} onClick={()=>setTotal(total)} onChange={onChange} />
-                
-                </Card>
-            </div>
+                    {showInput ? 
+                    <div className="resu">
+                        <p>{product.unit} </p>
+                    <Col>
+                        <Button type="primary" onClick={()=>addValue(product.unit)} shape="circle">+</Button>
+                        <Button type="primary" onClick={()=>subValue(product.unit)} shape="circle">-</Button>
+                        <Button type="primary" onClick={()=>clearOneProduct(product)} shape="circle">X</Button>
+                    </Col>
+                    <Col>Precio Total: {total}.00 $</Col> 
+                    </div>
+                    :
+                    <Link className="product" key={product._id} to={'/product/'+product._id}>
+                    <Button type="primary" htmlType="submit"> Detalls </Button>
+                    </Link>
+                    }
+                    </div>
+        
+                    </Card>
+                    </div>
             
-        </div>
+                    </div>
     
     )
 }

@@ -26,10 +26,10 @@ class SearchResults extends Component {
       console.log(this.props.result)
       if ((e.target.value) === 1) {
 
-        (this.props.result).sort((a, b) => a.price - b.price)
+        this.props.product.sort((a, b) => a.price - b.price)
       }
       else {
-        (this.props.result).sort((a, b) => b.price - a.price)
+        this.props.product.sort((a, b) => b.price - a.price)
       }
     })
   }

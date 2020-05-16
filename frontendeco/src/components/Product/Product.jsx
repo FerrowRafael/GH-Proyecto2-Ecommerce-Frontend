@@ -19,8 +19,6 @@ const Product = ({ product }) => {
                 >
                 <Col>{product.name}</Col>
                 <Col>{product.price} €</Col>
-                <ShoppingCartOutlined onClick={()=>addCart(product)} />
-                <ShoppingCartOutlined onClick={()=>clearOneProduct(product)} />
                 </Card>
             </Link>
             

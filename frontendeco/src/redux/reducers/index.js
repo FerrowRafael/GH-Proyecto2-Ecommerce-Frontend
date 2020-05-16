@@ -32,7 +32,7 @@ const reducer = (state = { cart: [] }, action) => {
                 ...state,
                 cart: [...state.cart, action.payload]
             }
-        case 'CLEAR_CART':
+        case 'EMPTY_CART':
             return {
                 ...state,
                 cart: []
@@ -57,6 +57,26 @@ const reducer = (state = { cart: [] }, action) => {
                 ...state,
                 productValue: action.payload
             }
+
+        case "ADD_CANT_CART":
+            return {
+                ...state,
+                cart:  state.cart.map((article) =>                   
+                article._id === action.payload
+                ?  {...article, unit: article.unit + 1}
+                :article,
+                ),
+                };
+
+        case "SUB_CANT_CART":
+            return {
+                ...state,
+                cart:  state.cart.map((article) =>                   
+                article._id === action.payload
+                ?  {...article, unit: article.unit - 1}
+                :article,
+                ),
+                };
 
         default:
             return state;
