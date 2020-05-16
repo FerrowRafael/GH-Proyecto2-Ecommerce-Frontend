@@ -53,6 +53,7 @@ class ProductDetail extends Component {
     render() {
         console.log(this.productoactual)
         return (
+            
             <Row className="product">
                 <div>
                 <img span={10} src={this.productoactual?.image_path} alt=""/>
@@ -67,7 +68,7 @@ class ProductDetail extends Component {
                     <Col>Precio: {this.productoactual?.price}€</Col>
                     <Col>Stock: {this.productoactual?.stock} unidades</Col>
                     <Button type="primary" disabled={this.state.active} onClick={()=>{this.addProductoToCart(this.productoactual)}} htmlType="submit">
-                        <NavLink to="/cesta" exact>Añadir al Carro</NavLink>
+                        <NavLink to="/carrito" exact>Añadir al Carro</NavLink>
                     </Button>
                 </div>
             </Row>

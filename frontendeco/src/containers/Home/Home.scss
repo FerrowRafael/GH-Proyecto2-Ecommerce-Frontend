@@ -1,5 +1,19 @@
 .products {
     display: grid;
-    grid-template: repeat(2, 1fr)/repeat(3, 1fr); 
-    
+    grid-template: repeat(1, 1fr)/repeat(3, 1fr);     
+}
+
+.ant-carousel .slick-slide {
+    text-align: center;
+    margin: 50px 50px;
+
+    height: 500px;
+    width: 50px;
+    line-height: 200px;
+    background: #C39094;
+    overflow: hidden;
+}
+  
+.ant-carousel .slick-slide h3 {
+    color: #fff;
 }

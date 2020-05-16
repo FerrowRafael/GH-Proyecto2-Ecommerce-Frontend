@@ -3,7 +3,7 @@ import axios from 'axios'
 import { withRouter } from "react-router-dom";
 import { API_URL } from '../../api-config';
 // import Suggestions from '../Sugerencias/Sugerencias'
-import { Button } from 'antd';
+import { Button, Input } from 'antd';
 import { connect } from "react-redux";
 //import store from "../../redux/store";
 import { rdx_resultName } from "../../redux/actions/products";
@@ -51,11 +51,11 @@ class Search extends Component {
     return (
       <div>
         <div className="patata">
-          <input type="text" name="nombre" 
+          <Input type="text" name="nombre"  
           placeholder="Busca producto" 
           value={this.state.nombre} 
-          onChange={this.handleInputChange} >
-          </input>
+          onChange={this.handleInputChange}/ >
+          
           {/* <input
             type="text"
             placeholder="Busca producto"

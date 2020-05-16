@@ -23,13 +23,16 @@ class SearchResults extends Component {
     this.setState({
       value: e.target.value,
     }, () => {
-      console.log(this.props.result)
+      console.log(this.props.products)
       if ((e.target.value) === 1) {
-
-        this.props.product.sort((a, b) => a.price - b.price)
+        this.props.products.sort((a, b) => a.price - b.price)
+        // console.log(ordenar)
+        // return ordenar
+        // this.props.products?.sort((a, b) => a.price - b.price)
+        
       }
-      else {
-        this.props.product.sort((a, b) => b.price - a.price)
+      else if((e.target.value) === 2) {
+        this.props.products.sort((a, b) => b.price - a.price)
       }
     })
   }
@@ -41,24 +44,28 @@ class SearchResults extends Component {
     // console.log(search, this.props.products);
     return (
       <Fragment>
-        <Radio.Group onChange={this.onChange} value={this.state.value}>
-          <p>Ordenar por precio</p>
-          <Radio value={1}>De mayor a menor</Radio>
-          <Radio value={2}>De menor a mayor</Radio>
-        </Radio.Group>
+        <div className="">
+          <h3>{this.props.match.params.name}</h3>
+          <Radio.Group onChange={this.onChange} value={this.state.value}>
+            <p>Ordenar por precio</p>
+            <Radio value={1}>De mayor a menor</Radio>
+            <Radio value={2}>De menor a mayor</Radio>
+          </Radio.Group>
 
-        <div className="products">
+          <div className="products">
+          
 
+            {this.props.products
+            ?.filter(p => search ? p.name.toLowerCase().includes(search.toLowerCase()) : true)
+              ?.map(product => {
+                console.log(product);
+                return <Product key={product?._id} product={product} />
+              })
+            }
 
-          {this.props.products
-          ?.filter(p => search ? p.name.toLowerCase().includes(search.toLowerCase()) : true)
-            ?.map(product => {
-              console.log(product);
-              return <Product key={product?._id} product={product} />
-            })
-          }
-
+          </div>
         </div>
+        
 
         {/* // <Suggestions results={this.state.results} /> */}
       </Fragment>
