@@ -2,7 +2,7 @@
 import React from 'react'
 import { connect } from "react-redux";
 
-const OrderDetails = () => {
+const AdminProfile = () => {
 
 
     return (
@@ -21,4 +21,4 @@ const OrderDetails = () => {
 }
 
 const mapStateToProps = (state) => ({ products: state.products, cart: state.cart })
-export default connect(mapStateToProps)(OrderDetails);
+export default connect(mapStateToProps)(AdminProfile);

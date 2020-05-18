@@ -16,6 +16,9 @@ class Results extends Component {
       }
 
   render(){
+    if(this.props.result){
+      console.log("hola")
+    }
     console.log(this.props.result)
       return(
         <Fragment>

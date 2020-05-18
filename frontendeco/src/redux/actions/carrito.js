@@ -47,6 +47,7 @@ export const clearOneProduct = (product) => {
 }
 
 export const comprar = async(productIds) => {
+    console.log(productIds)
     const res = await axios.post('http://localhost:3001/orders/add', {productIds}, {
         headers: {
             Authorization: localStorage.getItem('authToken')
@@ -56,7 +57,8 @@ export const comprar = async(productIds) => {
         type: 'COMPRAR',
         payload: res.data
     });
-
+    emptyCart()
+    
 }
 
         

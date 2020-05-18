@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import axios from "axios";
 import { useParams, NavLink } from 'react-router-dom';
 import { API_URL } from '../../api-config';
@@ -53,25 +53,29 @@ class ProductDetail extends Component {
     render() {
         console.log(this.productoactual)
         return (
-            
-            <Row className="product">
-                <div>
-                <img span={10} src={this.productoactual?.image_path} alt=""/>
-                </div>
-                <div span={10} className="detail">
-                    <div className="nameId">
-                        <div>{this.productoactual?.name}</div>
-                        <div>{this.productoactual?._id}</div>
-                    </div>
+            <Fragment>
+                <Row className="product">
+                    <Col span={9} offset={6} className="imagen">
+                        <img span={10} src={this.productoactual?.image_path} alt=""/>
+                    </Col>
+                    <Col span={5} className="detail">
+                        <h3>{this.productoactual?.name}</h3>
+                        <div>
+                            <Col><p>{this.productoactual?.description}</p></Col>
+                            <Col><p>Precio: {this.productoactual?.price}€</p></Col>
+                            <Col><p>Stock: {this.productoactual?.stock} unidades</p></Col>
+                        </div>
+                    
 
-                    <Col>{this.productoactual?.description}</Col>
-                    <Col>Precio: {this.productoactual?.price}€</Col>
-                    <Col>Stock: {this.productoactual?.stock} unidades</Col>
-                    <Button type="primary" disabled={this.state.active} onClick={()=>{this.addProductoToCart(this.productoactual)}} htmlType="submit">
-                        <NavLink to="/carrito" exact>Añadir al Carro</NavLink>
-                    </Button>
+                        <Button type="primary" disabled={this.state.active} onClick={()=>{this.addProductoToCart(this.productoactual)}} htmlType="submit">
+                            <NavLink to="/carrito" exact>Añadir al Carro</NavLink>
+                        </Button>
+                    </Col>
+                </Row>
+                <div className="sugerencias">
+                    <h2>Sugerencias</h2>
                 </div>
-            </Row>
+            </Fragment>
         )
     }
 }

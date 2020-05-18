@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import OtroProduct from '../../components/OtroProduct/OtroProduct';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { Col, Card, Button, InputNumber } from 'antd';
+import { Col, Card, Button, InputNumber, Modal } from 'antd';
 import { addCantCart, subCantCart, clearOneProduct, comprar } from "../../redux/actions/carrito"; 
 import { emptyCart } from "../../redux/actions/carrito";
 import axios from 'axios';
@@ -15,15 +15,20 @@ class PurchasingProcess extends Component{
         super(props);
         this.state = {
             total: this.product?.price*this.product?.unit,
-            TotalPrecio: 0 ,
+            TotalPrecio: this.props.cart.reduce((sum, i) => {
+                return sum + (i.price * i.unit)
+              }, 0),
+            visible: false
         }
     }
-    componentDidMount(){
+
+    componentWillReceiveProps(){
         let grandTotal = this.props.cart.reduce((sum, i) => {
             return sum + (i.price * i.unit)
           }, 0)
           this.setState({TotalPrecio:grandTotal})  
     }
+
     addValue(value) {
         this.state.total((value+1)*this.product?.price)
         addCantCart(this.product._id);
@@ -34,74 +39,70 @@ class PurchasingProcess extends Component{
         subCantCart(this.product._id);
     }
 
+    showModal = () => {
+        this.setState({
+          visible: true,
+        });
+    };
+    
+    handleOk = e => {
+        console.log(e);
+        this.setState({
+          visible: false,
+        });
+      };
+    
+      handleCancel = e => {
+        console.log(e);
+        this.setState({
+          visible: false,
+        });
+      };
 
-    // async pulsaBuy() {
-        
-    //     //procedemos a dar de alta las compras en la base de datos.
 
-    //     // for (let [index, product] of this.props.cart) {
-                
-    //         let body = {
-    //             total: this.state.TotalPrecio,
-    //             status: "pending",
-    //             UserId: this.props.user._id,
-    //             deliveryDate: '2020-05-20', 
-    //             products: this.props.cart.map(producto => [{
-    //                 productId: producto._id,
-    //                 unit: producto.unit,
-    //                 subtotal: (producto.unit)*(producto.price)
-    //             }])
-                
-    //         };
-    //         let productsIDS = this.props.cart.map(producto => producto._id);
-    //         console.log(productsIDS);
-    //     // }
-        
-    //         try {
-    //             console.log(this.props.cart.length)
-    //             await axios.post('http://localhost:3001/orders/add', this.body, {
-    //                 headers: {
-    //                     Authorization: localStorage.getItem('authToken')
-    //                 }
-    //             });
-    //             console.log("hola")
-    //             //Muestro
-    //             // this.muestraError("Compra exitosa.", 2, false);
-
-    //             setTimeout(() => {
-    //                 //vaciamos la cesta.
-
-    //                 emptyCart()
-                    
-    //                 //redireccionamos a main
-    //                 this.props.history.push("/home");
-    //             }, 2000);
-
-    //         } catch (err) {
-    //             // if (err.response) {
-    //             //     if (err.response.data) {
-    //             //         this.muestraError("Ha ocurrido un error.");
-                        
-    //             //     }
-    //             //     return;
-    //             // }
-    //             console.log(err);
-    //         }
-        
-    // }
     render(){
-        let productIds = this.props.cart.map(producto => ({_id: producto._id, unit: producto.unit}));
+        let productIds = this.props.cart.map(producto => 
+            ({name: producto.name,_id: producto._id, unit: producto.unit, 
+                subtotal: producto.unit*producto.price}));
         console.log(productIds)
         return(
+            <Fragment>
             <div className="product">
   
                 {(this.props.cart)?.map(product => <OtroProduct showInput={true} key={this.product?._id} product={product}/>)}
-                <div>{this.state.TotalPrecio}</div>
-                <Button type="primary" onClick={()=>emptyCart()} shape="circle">delete</Button>
-                <div className="buttonContainer mb3">
-                    <Button type="primary" onClick={() => {comprar(productIds)}}>Comprar</Button>
-                </div>
+                <td>Continuar Comprando</td>
+                <td>Total del Pedido: {this.state.TotalPrecio.toFixed(2)} €</td>
+                <td><Button type="primary" onClick={()=>emptyCart()} >Borrar pedido</Button></td>
+                <td className="buttonContainer mb3">
+                    <Button type="primary" onClick={() => {comprar(productIds); this.showModal()}}>Confirma tu pedido</Button>
+                </td>
+                
+                <td></td>
+                <td></td>
             </div>
+
+            <div>
+                {/* <Button type="primary" onClick={this.showModal}> */}
+                {/* Open Modal
+                </Button> */}
+                <Modal
+                    title="Compra realizada con exito"
+                    visible={this.state.visible}
+                    onOk={this.handleOk}
+                    onCancel={this.handleCancel}
+                    >
+                    <div>
+                        {(this.props.compra?.productIds)?.map(producto => { 
+                            return <div>
+                                <p>{producto.unit} Unidades. {producto.name} {producto.subtotal.toFixed(2)} €</p>
+                            </div>
+                            })}
+                        <p>Total Pedido: {this.state.TotalPrecio.toFixed(2)} €</p>
+                        <p>Gracias por comprar en nuestra tienda</p>
+                    </div>
+                </Modal>
+            </div>
+            </Fragment>
         )
     }
 }
@@ -109,7 +110,7 @@ class PurchasingProcess extends Component{
 
 
 
-const mapStateToProps = (state) => ({ cart:[...state.cart], user:state.user})
+const mapStateToProps = (state) => ({ cart:[...state.cart], user:state.user, compra:state.compra})
 export default connect(mapStateToProps)(PurchasingProcess);
 
 

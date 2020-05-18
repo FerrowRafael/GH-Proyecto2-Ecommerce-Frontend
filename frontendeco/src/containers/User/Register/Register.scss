@@ -1,11 +1,49 @@
 @import '../../../colors.scss';
+
 .registerContainer {
     padding: 1.2em;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
+    margin: 5.6em;
+    position: relative
     label {
         color: $white;
     }
+    
+    // background-color: blueviolet;
+    
+  
+    .registerForm{
+        background-color: #327CC1;
+        padding: 20px;
+        border-radius: 25px 10px 25px 10px;
+        padding-right: 50px;
+        // position: absolute;
+        // height: 100%;
+        // width: 100%;
+     
         
+      
+    }
+
+    .registerleft{
+        // background-color: blue;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: auto;
+        Button{
+            background-color: $darkblue;
+        }
+    }
+
+    .registerright{
+        // background-color: chartreuse;
+        height: 100%;
+        width: auto;
+     
+    }
 }
+
+

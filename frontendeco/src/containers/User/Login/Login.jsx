@@ -1,8 +1,9 @@
 import React, { useRef, useEffect } from 'react'
-import { Form, Input, Button, notification } from 'antd';
+import { Form, Input, Button, notification, Col } from 'antd';
 import './Login.scss';
 import { useHistory } from 'react-router-dom';
 import { login } from '../../../redux/actions/users';
+import { MailOutlined, LockOutlined } from '@ant-design/icons';
 const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
@@ -38,38 +39,43 @@ const Login = () => {
 
     return (
         <div className="loginContainer">
-            <Form
-                className="loginForm"
-                {...layout}
-                name="basic"
-                // initialValues={{email:'yo@yo.yo', password: '12345' }}
-                onFinish={onFinish}
-                onFinishFailed={console.error} >
-                <h3>Login</h3>
-                <Form.Item
-                    label="Email"
-                    name="email"
-                    id="email"
-                    rules={[{ required: true, message: 'El email es requerido' }]}
-                >
-                    <Input ref={emailInput}/>
-                </Form.Item>
+            <Col span={6} col-6 className="registerright">
+                <img src="https://vignette.wikia.nocookie.net/60seconds/images/4/4b/Ted1v2.png/revision/latest?cb=20180409034709" alt=""/>
+            </Col>
+            <Col>
+                <Form
+                    className="loginForm"
+                    {...layout}
+                    name="basic"
+                    // initialValues={{email:'yo@yo.yo', password: '12345' }}
+                    onFinish={onFinish}
+                    onFinishFailed={console.error} >
+                    <h3>Login</h3>
+                    <Form.Item
+                        label="Email"
+                        name="email"
+                        id="email"
+                        rules={[{ required: true, message: 'El email es requerido' }]}
+                    >
+                        <Input prefix={<MailOutlined />} ref={emailInput}/>
+                    </Form.Item>
 
-                <Form.Item
-                    label="Contraseña"
-                    name="password"
-                    id="password"
-                    rules={[{ required: true, message: 'La contraseña es requerida' }]}
-                >
-                    <Input.Password />
-                </Form.Item>
+                    <Form.Item
+                        label="Contraseña"
+                        name="password"
+                        id="password"
+                        rules={[{ required: true, message: 'La contraseña es requerida' }]}
+                    >
+                        <Input.Password prefix={<LockOutlined />}/>
+                    </Form.Item>
 
-                <Form.Item {...tailLayout}>
-                    <Button type="primary" htmlType="submit">
-                        Conectarse
-          </Button>
-                </Form.Item>
-            </Form>
+                    <Form.Item {...tailLayout}>
+                        <Button type="primary" htmlType="submit">
+                            Conectarse
+                        </Button>
+                    </Form.Item>
+                </Form>
+            </Col>
         </div>
     );
 }

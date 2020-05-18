@@ -14,7 +14,7 @@ class SearchResults extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 0,
+      value: 1,
     }
   }
 
@@ -24,14 +24,11 @@ class SearchResults extends Component {
       value: e.target.value,
     }, () => {
       console.log(this.props.products)
-      if ((e.target.value) === 1) {
+      if ((e.target.value) == 1) {
         this.props.products.sort((a, b) => a.price - b.price)
-        // console.log(ordenar)
-        // return ordenar
-        // this.props.products?.sort((a, b) => a.price - b.price)
         
       }
-      else if((e.target.value) === 2) {
+      else if((e.target.value) == 2) {
         this.props.products.sort((a, b) => b.price - a.price)
       }
     })
@@ -40,8 +37,10 @@ class SearchResults extends Component {
 
 
   render() {
-    const search = this.props.match.params.name
-    // console.log(search, this.props.products);
+    let search = this.props.match.params.name
+    console.log(this.props.productSearchResult?.length)
+    
+    console.log(search, this.props.products);
     return (
       <Fragment>
         <div className="">
@@ -53,15 +52,18 @@ class SearchResults extends Component {
           </Radio.Group>
 
           <div className="products">
-          
-
             {this.props.products
             ?.filter(p => search ? p.name.toLowerCase().includes(search.toLowerCase()) : true)
               ?.map(product => {
                 console.log(product);
-                return <Product key={product?._id} product={product} />
+                return <div>{!product ?
+                  <div><p>Holiiiii</p></div> : <Product key={product?._id} product={product} />}
+                </div>
+       
               })
             }
+            
+            
 
           </div>
         </div>
@@ -74,5 +76,5 @@ class SearchResults extends Component {
 
 }
 
-const mapStateToProps = (state) => ({ products: state.products })
+const mapStateToProps = (state) => ({ products: state.products, productSearchResult: state.productSearchResult })
 export default connect(mapStateToProps)(withRouter(SearchResults));

@@ -15,7 +15,7 @@ const Home = (props) => {
 
 
     return (
-        <div>
+        <div className="wrapper">
             <Carousel className="carousel" autoplay>
                 <div>
                     <img src="https://i.blogs.es/9e3b55/281018-fallout76-beta1-preview/1366_2000.jpg" alt=""/>
@@ -30,14 +30,16 @@ const Home = (props) => {
                     <img src="https://i.blogs.es/9e3b55/281018-fallout76-beta1-preview/1366_2000.jpg" alt=""/>
                 </div>
             </Carousel>
+
+
             <h2>Todos los productos</h2>
             <div className="products">
-                {(props.products)?.map(product => <Product key={product._id} product={product}/>)}
+                {(props.products)?.slice(0, 6).map(product => <Product key={product._id} product={product}/>)}
             </div>
 
 
             <div className="productsRecent">
-                <h2>Productos añadidos recientemente</h2>
+                <h2>Novedades</h2>
                 <ProductsRecent/>
             </div>
         </div>

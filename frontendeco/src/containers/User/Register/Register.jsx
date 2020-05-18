@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react'
-import { Form, Input, Button, notification } from 'antd';
+import { Form, Input, Button, Col, Row, notification } from 'antd';
 import './Register.scss';
+import { UserOutlined, MailOutlined, LockOutlined } from '@ant-design/icons';
 import { API_URL } from '../../../api-config';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
@@ -33,40 +34,48 @@ const Register = () => {
     };
     return (
         <div className="registerContainer">
-            <Form
-                className="registerForm"
-                {...layout}
-                onFinish={onFinish}
-                onFinishFailed={console.error} >
-                <h3>Register</h3>
-                <Form.Item
-                    label="Nombre"
-                    name="userName"
-                >
-                    <Input ref={nameInput}/>
-                </Form.Item>
-                <Form.Item
-                    label="Email"
-                    name="email"
-                    rules={[{ required: true, message: 'El email es requerido' }]}
-                >
-                    <Input />
-                </Form.Item>
+            <Col span={8} col-16 className="registerleft">
+                
+                <Form
+                    className="registerForm"
+                    {...layout}
+                    initialValues={{
+                        remember: true,
+                      }}
+                    onFinish={onFinish}
+                    onFinishFailed={console.error} >
+                    <h3>Register</h3>
+                    <Form.Item label="Nombre" name="userName" rules={[{ required: true, message: 'El nombre es requerido' }]}>
+                        
+                        <Input prefix={<UserOutlined />}ref={nameInput}/>
+                    </Form.Item>
+                    <Form.Item
+                        label="Email"
+                        name="email"
+                        rules={[{ required: true, message: 'El email es requerido' }]}
+                    >
+                        <Input prefix={<MailOutlined />}/>
+                    </Form.Item>
 
-                <Form.Item
-                    label="Contraseña"
-                    name="password"
-                    rules={[{ required: true, message: 'La contraseña es requerida' }]}
-                >
-                    <Input.Password />
-                </Form.Item>
+                    <Form.Item
+                        label="Contraseña"
+                        name="password"
+                        rules={[{ required: true, message: 'La contraseña es requerida' }]}
+                    >
+                        <Input.Password prefix={<LockOutlined />}/>
+                    </Form.Item>
 
-                <Form.Item {...tailLayout}>
-                    <Button type="primary" htmlType="submit">
-                        Darse de alta
-                    </Button>
-                </Form.Item>
-            </Form>
+                    <Form.Item {...tailLayout}>
+                        <Button type="primary" htmlType="submit">
+                            Darse de alta
+                        </Button>
+                    </Form.Item>
+                </Form>
+            </Col>
+            <Col span={6} col-6 className="registerright">
+                <img src="https://vignette.wikia.nocookie.net/60seconds/images/4/4b/Ted1v2.png/revision/latest?cb=20180409034709" alt=""/>
+            </Col>
+            
         </div>
     );
 }
