@@ -1,4 +1,4 @@
-# GH-Proyecto2-Ecommerce-Backend 
+# GH-Proyecto2-Ecommerce-Frontend 
 
 BackEnd del segundo proyecto del Bootcamp FullStack de GeeksHubs de una ecommerce de camisetas.
 React(Redux) / Express(MongoDB
