@@ -32,8 +32,8 @@ function subValue(value) {
                                 <td></td>
                                 <td>Precio Unitario</td>
                                 <td>Cantidad</td>
-                                <td></td>
                                 <td>Precio Total</td>
+                                <td>Eliminar</td>
                             </thead>
                             <tbody>
                                 <td>
@@ -43,19 +43,20 @@ function subValue(value) {
                                 </td>
                                 <td>
                                     <p>{product.name}</p>
-                                    <p>{product.description}</p>
                                     <p>Código: {product._id}</p>
                                     <p>DISPONIBLE ONLINE</p>
                                 </td>
                                 <td>{product.price} €</td>
-                                <td>{product.unit}</td>
                                 <td class="row">
-                                <Button type="primary" onClick={()=>addValue(product.unit)} shape="circle">+</Button>
-                                <p>{product.unit}</p>
-                                <Button type="primary" onClick={()=>subValue(product.unit)} shape="circle">-</Button>
+                                    <div>
+
+                                    <Button  onClick={()=>addValue(product.unit)} shape="circle">+</Button>
+                                    <p>{product.unit}</p>
+                                    <Button  onClick={()=>subValue(product.unit)} shape="circle">-</Button>
+                                    </div>
                                 </td>
                                 <td>{total.toFixed(2)} €</td> 
-                                <td><Button type="primary" onClick={()=>clearOneProduct(product.unit)} shape="circle">-</Button></td>  
+                                <td><Button  onClick={()=>clearOneProduct(product.unit)} shape="circle">-</Button></td>  
                             </tbody>
                         </tbody>
                     </table>     

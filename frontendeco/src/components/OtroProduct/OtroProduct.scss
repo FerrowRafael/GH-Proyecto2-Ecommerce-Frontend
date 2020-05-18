@@ -3,8 +3,9 @@ table , td, th {
 	border-collapse: collapse;
 }
 td, th {
-	padding: 3px;
-	width: 30px;
+	text-align: center;
+	margin-left: 8em;
+	padding: 0px 20px 0px 10px;
     height: 25px;
     background: #327CC1;
     font: black;
@@ -18,3 +19,4 @@ th {
 .odd {
 	background: #fefcf9;
 }
+

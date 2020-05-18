@@ -17,22 +17,22 @@ const Home = (props) => {
     return (
         <div className="wrapper">
             <Carousel className="carousel" autoplay>
+               
+               
                 <div>
-                    <img src="https://i.blogs.es/9e3b55/281018-fallout76-beta1-preview/1366_2000.jpg" alt=""/>
+                    <img style={{ marginLeft: '900px'}}src="https://3.bp.blogspot.com/-vOr2YQGdiAM/XKzbNfrK7rI/AAAAAAAASkA/7Kx1017J89IOxOFdSBH4d90_qiAwjWK3QCLcBGAs/s1600/camisetas-frikis.jpg" style={{width: "60em"}} alt=""/>
                 </div>
                 <div>
-                    <img src="https://i.blogs.es/9e3b55/281018-fallout76-beta1-preview/1366_2000.jpg" alt=""/>
+                    <img style={{ marginLeft: '90px',marginTop: '-120px',width: '1200px'}} src="https://juiceonline.com/app/uploads/2020/01/ghibli1.jpg" alt=""/>
                 </div>
                 <div>
-                    <img src="https://i.blogs.es/9e3b55/281018-fallout76-beta1-preview/1366_2000.jpg" alt=""/>
+                    <img style={{ marginLeft: '-80px'}}src="https://2.bp.blogspot.com/-wFqlZW9RH2c/WSN7A3Q1evI/AAAAAAAHqA8/HyA0c76710sVtnSnmNMkPT_JPfGlmmWNwCLcB/s1600/avengers-poster2.jpg" alt=""/>
                 </div>
-                <div>
-                    <img src="https://i.blogs.es/9e3b55/281018-fallout76-beta1-preview/1366_2000.jpg" alt=""/>
-                </div>
+                
             </Carousel>
 
 
-            <h2>Todos los productos</h2>
+            <h2>Nuestros productos</h2>
             <div className="products">
                 {(props.products)?.slice(0, 6).map(product => <Product key={product._id} product={product}/>)}
             </div>

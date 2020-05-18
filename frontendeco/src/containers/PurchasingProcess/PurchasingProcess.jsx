@@ -1,8 +1,8 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component, Fragment, Route} from 'react';
 import OtroProduct from '../../components/OtroProduct/OtroProduct';
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { Col, Card, Button, InputNumber, Modal } from 'antd';
+import { Col, Row,Card, Button, InputNumber, Modal } from 'antd';
 import { addCantCart, subCantCart, clearOneProduct, comprar } from "../../redux/actions/carrito"; 
 import { emptyCart } from "../../redux/actions/carrito";
 import axios from 'axios';
@@ -67,41 +67,40 @@ class PurchasingProcess extends Component{
         console.log(productIds)
         return(
             <Fragment>
-            <div className="product">
-  
-                {(this.props.cart)?.map(product => <OtroProduct showInput={true} key={this.product?._id} product={product}/>)}
-                <td>Continuar Comprando</td>
-                <td>Total del Pedido: {this.state.TotalPrecio.toFixed(2)} €</td>
-                <td><Button type="primary" onClick={()=>emptyCart()} >Borrar pedido</Button></td>
-                <td className="buttonContainer mb3">
-                    <Button type="primary" onClick={() => {comprar(productIds); this.showModal()}}>Confirma tu pedido</Button>
-                </td>
+            <Row >
+                <Col span={18} >
+                    {(this.props.cart)?.map(product => <OtroProduct showInput={true} key={this.product?._id} product={product}/>)}
+                </Col>
                 
-                <td></td>
-                <td></td>
-            </div>
+                <Col span={6}  style={{marginTop: "50px", marginBottom: "410px", padding:"20px",backgroundColor: "#D5BAB0"}}className="pedidoProd">
+                <Link to="/home" className="btn btn-primary">Continuar Comprando</Link>
+                    <p><strong>Total del Pedido: {this.state.TotalPrecio.toFixed(2)} €</strong></p>
+                    <p><Button onClick={()=>emptyCart()} >Borrar pedido</Button></p>
+                    <p className="buttonContainer mb3">
+                        <Button onClick={() => {comprar(productIds); this.showModal()}}>Confirma tu pedido</Button>
+                    </p>
+                </Col>
+            </Row>
 
-            <div>
-                {/* <Button type="primary" onClick={this.showModal}> */}
-                {/* Open Modal
-                </Button> */}
+            {/* MODAL */}
+            <Row className="finalizando">
                 <Modal
                     title="Compra realizada con exito"
                     visible={this.state.visible}
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}
                     >
-                    <div>
+                    <div >
                         {(this.props.compra?.productIds)?.map(producto => { 
                             return <div>
                                 <p>{producto.unit} Unidades. {producto.name} {producto.subtotal.toFixed(2)} €</p>
                             </div>
                             })}
                         <p>Total Pedido: {this.state.TotalPrecio.toFixed(2)} €</p>
-                        <p>Gracias por comprar en nuestra tienda</p>
+                        <p>Gracias por comprar en nuestra tienda 🥰</p>
                     </div>
                 </Modal>
-            </div>
+            </Row>
             </Fragment>
         )
     }

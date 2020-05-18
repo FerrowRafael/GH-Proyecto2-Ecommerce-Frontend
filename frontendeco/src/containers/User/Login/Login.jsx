@@ -40,7 +40,7 @@ const Login = () => {
     return (
         <div className="loginContainer">
             <Col span={6} col-6 className="registerright">
-                <img src="https://vignette.wikia.nocookie.net/60seconds/images/4/4b/Ted1v2.png/revision/latest?cb=20180409034709" alt=""/>
+                <img style={{width: "365px"}}src="https://vignette.wikia.nocookie.net/mario-fanon/images/1/1d/Shy_Guy_Artwork.png/revision/latest/scale-to-width-down/340?cb=20160102180040&path-prefix=es" alt=""/>
             </Col>
             <Col>
                 <Form

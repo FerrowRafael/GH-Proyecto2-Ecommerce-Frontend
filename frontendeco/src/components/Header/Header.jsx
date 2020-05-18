@@ -37,7 +37,7 @@ class Header extends Component {
             <header className="header">
             
                 <div className="leftHeader">
-                    <NavLink to="/home"><img src="https://vignette.wikia.nocookie.net/fallout/images/0/06/VaultTecLogo.png/revision/latest?cb=20190908160136" style={{width: "60px"}} alt=""/></NavLink>
+                    <NavLink to="/home"><h3 style={{ fontSize: '20px', color: 'yellow' }}>ShyBuy</h3></NavLink>
                     <NavLink to="/home" exact>Home</NavLink>
                     {/* <NavLink to="/results" exact>Products</NavLink> */}
                 </div>

@@ -4,6 +4,7 @@
     justify-content: space-around;
     background-color: $darkblue;
     color: $white;
+    height: 60px;
     font-size: 1rem;
     border-bottom-left-radius: 2em;
     border-bottom-right-radius: 2em;
@@ -11,6 +12,9 @@
         display: flex;
     }
 
+    h1{
+        font: 20px, #D5BAB0, Roboto;
+    }
     a {
         all: unset;
         padding: 0.8em;

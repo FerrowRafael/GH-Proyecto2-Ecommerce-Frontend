@@ -73,7 +73,7 @@ const Register = () => {
                 </Form>
             </Col>
             <Col span={6} col-6 className="registerright">
-                <img src="https://vignette.wikia.nocookie.net/60seconds/images/4/4b/Ted1v2.png/revision/latest?cb=20180409034709" alt=""/>
+                <img style={{width: "300px"}}src="https://pngimage.net/wp-content/uploads/2018/06/imagenes-random-png-2.png" alt=""/>
             </Col>
             
         </div>

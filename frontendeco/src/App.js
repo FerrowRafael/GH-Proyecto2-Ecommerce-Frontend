@@ -10,7 +10,6 @@ import Registro from './containers/User/Register/Register';
 import ProductDetail from './containers/ProductDetail/ProductDetail';
 import PurchasingProcess from './containers/PurchasingProcess/PurchasingProcess';
 import Results from './containers/Results/Results';
-import OrderDetails from './containers/OrderDetails/OrderDetails';
 import Profile from './containers/Profile/Profile';
 
 function App() {
@@ -27,7 +26,6 @@ function App() {
             <Route path="/results/:name" component= { Results } exact/>
             <Route path="/product/:_id" component= { ProductDetail } exact/>
             <Route path="/carrito" component= { PurchasingProcess } exact/>
-            <Route path="/orderdetail" component= { OrderDetails } exact/>
             <Route path="/profile" component= { Profile } exact/>
           </Switch>
           <Footer/>

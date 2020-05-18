@@ -43,13 +43,15 @@ class SearchResults extends Component {
     console.log(search, this.props.products);
     return (
       <Fragment>
-        <div className="">
-          <h3>{this.props.match.params.name}</h3>
-          <Radio.Group onChange={this.onChange} value={this.state.value}>
-            <p>Ordenar por precio</p>
-            <Radio value={1}>De mayor a menor</Radio>
-            <Radio value={2}>De menor a mayor</Radio>
-          </Radio.Group>
+        <div className="result">
+          <div style={{marginLeft:"50px", marginTop:"20px"}}>
+            <h3>Busqueda: "{this.props.match.params.name}"</h3>
+            <Radio.Group onChange={this.onChange} value={this.state.value}>
+              <p>Ordenar por precio</p>
+              <Radio value={1}>De mayor a menor</Radio>
+              <Radio value={2}>De menor a mayor</Radio>
+            </Radio.Group>
+          </div>
 
           <div className="products">
             {this.props.products

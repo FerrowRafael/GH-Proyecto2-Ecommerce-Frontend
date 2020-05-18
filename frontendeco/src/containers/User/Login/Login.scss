@@ -1,13 +1,12 @@
 @import '../../../colors.scss';
+
 .loginContainer {
     padding: 1.2em;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    min-height: 100% !important;
-    margin-top: 100px;
     margin: 5.6em;
-
+    position: relative
     label {
         color: $white;
     }

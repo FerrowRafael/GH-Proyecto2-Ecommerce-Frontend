@@ -55,15 +55,14 @@ class ProductDetail extends Component {
         return (
             <Fragment>
                 <Row className="product">
-                    <Col span={9} offset={6} className="imagen">
+                    <Col span={8} offset={6} className="imagen">
                         <img span={10} src={this.productoactual?.image_path} alt=""/>
                     </Col>
-                    <Col span={5} className="detail">
-                        <h3>{this.productoactual?.name}</h3>
+                    <Col span={6} className="detail">
+                        <h3><strong>{this.productoactual?.name}</strong></h3>
                         <div>
                             <Col><p>{this.productoactual?.description}</p></Col>
-                            <Col><p>Precio: {this.productoactual?.price}€</p></Col>
-                            <Col><p>Stock: {this.productoactual?.stock} unidades</p></Col>
+                            <Col><p>Precio: {this.productoactual?.price} €</p></Col>
                         </div>
                     
 
@@ -72,9 +71,7 @@ class ProductDetail extends Component {
                         </Button>
                     </Col>
                 </Row>
-                <div className="sugerencias">
-                    <h2>Sugerencias</h2>
-                </div>
+            
             </Fragment>
         )
     }
